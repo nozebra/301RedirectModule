@@ -34,7 +34,7 @@ namespace SharedSource.RedirectModule.Handlers
         private void CreateRedirectItem(Item item, Item oldParent)
         {
             // we only want a redirect on pages and media assets
-            if (oldParent.Paths.IsContentItem || oldParent.Paths.IsMediaItem)
+            if ((oldParent.Paths.IsContentItem || oldParent.Paths.IsMediaItem) && item.Parent.Paths.ContentPath != oldParent.Paths.ContentPath)
             {    
                 string oldPath = LinkManager.GetItemUrl(oldParent).Replace("/sitecore/shell", "") + "/" + LinkManager.GetItemUrl(item).Split('/').Last();
                 Database db = Sitecore.Configuration.Factory.GetDatabase("master");
